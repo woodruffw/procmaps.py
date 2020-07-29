@@ -7,7 +7,7 @@ all:
 env:
 	test -d env || python3 -m venv env
 	. env/bin/activate
-	pip install maturin twine
+	pip install maturin
 
 
 .PHONY: develop
@@ -33,4 +33,3 @@ build: env
 dist:
 	. env/bin/activate
 	docker run --rm -v $(shell pwd):/io konstin2/maturin build --release
-	twine upload target/wheels/*.whl
