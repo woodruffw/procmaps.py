@@ -1,0 +1,27 @@
+[package]
+name = "procmaps"
+version = "0.1.0"
+authors = ["William Woodruff <william@trailofbits.com>"]
+edition = "2018"
+description = "Python bindings for procmaps.rs"
+repository = "https://github.com/woodruffw/procmaps.py"
+readme = "README.md"
+license = "MIT"
+
+[package.metadata.release]
+no-dev-version = true
+disable-publish = true # handled by GitHub Actions
+
+[package.metadata.maturin]
+classifier = [
+  "Programming Language :: Rust",
+  "Operating System :: POSIX :: Linux",
+]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+libc = "0.2"
+pyo3 = { version = "0.11", features = ["extension-module"] }
+rsprocmaps = "0.1"
