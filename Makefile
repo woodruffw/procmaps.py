@@ -30,6 +30,6 @@ build: env
 
 .PHONY: dist
 .ONESHELL:
-dist:
+dist: env
 	. env/bin/activate
 	docker run --rm -v $(shell pwd):/io konstin2/maturin build --release
