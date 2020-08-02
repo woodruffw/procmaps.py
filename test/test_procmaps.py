@@ -8,6 +8,10 @@ class TestProcmaps(unittest.TestCase):
     def check_map_properties(self, map_):
         self.assertIsInstance(map_.begin_address, int)
         self.assertIsInstance(map_.end_address, int)
+
+        self.assertTrue(map_.begin_address in map_)
+        self.assertFalse(map_.end_address in map_)
+
         self.assertIsInstance(map_.is_readable, bool)
         self.assertIsInstance(map_.is_writable, bool)
         self.assertIsInstance(map_.is_executable, bool)
