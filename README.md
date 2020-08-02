@@ -21,8 +21,12 @@ import procmaps
 # also: from_path, from_str
 maps = procmaps.from_pid(9001)
 for map_ in maps:
-    print(f"{map_.begin_address}: {map_.pathname}")
+    # `in` can be used to check address inclusion
+    if 0xfeedface in map_:
+        print("this map contains some address!")
+
     # see dict(map_) for all attributes
+    print(f"{map_.begin_address}: {map_.pathname}")
 ```
 
 ## Development
