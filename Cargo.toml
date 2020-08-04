@@ -25,4 +25,4 @@ crate-type = ["cdylib"]
 [dependencies]
 libc = "0.2"
 pyo3 = { version = "0.11", features = ["extension-module"] }
-rsprocmaps = "0.1"
+rsprocmaps = "0.2"
