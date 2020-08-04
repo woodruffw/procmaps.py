@@ -32,4 +32,4 @@ build: env
 .ONESHELL:
 dist: env
 	. env/bin/activate
-	docker run --rm -v $(shell pwd):/io konstin2/maturin build --release
+	docker run --rm -v $(shell pwd):/io konstin2/maturin build --release --strip
