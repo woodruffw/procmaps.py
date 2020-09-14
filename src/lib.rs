@@ -2,13 +2,13 @@ use std::path::Path;
 
 use libc::pid_t;
 use pyo3::class::PySequenceProtocol;
-use pyo3::exceptions::{Exception, IOError};
+use pyo3::exceptions::{PyException, PyIOError};
 use pyo3::prelude::*;
 use pyo3::{create_exception, wrap_pyfunction};
 
 use rsprocmaps::error::Error;
 
-create_exception!(procmaps, ParseError, Exception);
+create_exception!(procmaps, ParseError, PyException);
 
 /// Represents a memory map in the maps file.
 #[pyclass]
@@ -108,9 +108,9 @@ struct ProcmapsError(Error);
 impl std::convert::From<ProcmapsError> for PyErr {
     fn from(err: ProcmapsError) -> PyErr {
         match err.0 {
-            Error::Io(e) => IOError::py_err(e.to_string()),
-            Error::ParseError(e) => ParseError::py_err(e.to_string()),
-            Error::WidthError(e) => ParseError::py_err(e.to_string()),
+            Error::Io(e) => PyIOError::new_err(e),
+            Error::ParseError(e) => ParseError::new_err(e.to_string()),
+            Error::WidthError(e) => ParseError::new_err(e),
         }
     }
 }
