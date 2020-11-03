@@ -122,7 +122,9 @@ fn from_pid(pid: pid_t) -> PyResult<Vec<Map>> {
 
     let inner_maps = rsprocmaps::from_pid(pid).map_err(ProcmapsError)?;
     for map in inner_maps {
-        maps.push(Map { inner: map })
+        maps.push(Map {
+            inner: map.map_err(ProcmapsError)?,
+        })
     }
 
     Ok(maps)
@@ -135,7 +137,9 @@ fn from_path(path: &str) -> PyResult<Vec<Map>> {
 
     let inner_maps = rsprocmaps::from_path(Path::new(path)).map_err(ProcmapsError)?;
     for map in inner_maps {
-        maps.push(Map { inner: map })
+        maps.push(Map {
+            inner: map.map_err(ProcmapsError)?,
+        })
     }
 
     Ok(maps)
@@ -146,9 +150,11 @@ fn from_path(path: &str) -> PyResult<Vec<Map>> {
 fn from_str(maps_data: &str) -> PyResult<Vec<Map>> {
     let mut maps = Vec::new();
 
-    let inner_maps = rsprocmaps::from_str(maps_data).map_err(ProcmapsError)?;
+    let inner_maps = rsprocmaps::from_str(maps_data);
     for map in inner_maps {
-        maps.push(Map { inner: map })
+        maps.push(Map {
+            inner: map.map_err(ProcmapsError)?,
+        })
     }
 
     Ok(maps)
