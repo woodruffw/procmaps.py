@@ -20,78 +20,78 @@ struct Map {
 impl Map {
     /// Returns the beginning address for the map.
     #[getter]
-    fn begin_address(&self) -> PyResult<u64> {
-        Ok(self.inner.address_range.begin)
+    fn begin_address(&self) -> u64 {
+        self.inner.address_range.begin
     }
 
     /// Returns the end address for the map.
     #[getter]
-    fn end_address(&self) -> PyResult<u64> {
-        Ok(self.inner.address_range.end)
+    fn end_address(&self) -> u64 {
+        self.inner.address_range.end
     }
 
     /// Returns whether this map has the 'read' bit set
     #[getter]
-    fn is_readable(&self) -> PyResult<bool> {
-        Ok(self.inner.permissions.readable)
+    fn is_readable(&self) -> bool {
+        self.inner.permissions.readable
     }
 
     /// Returns whether this map has the 'write' bit set
     #[getter]
-    fn is_writable(&self) -> PyResult<bool> {
-        Ok(self.inner.permissions.writable)
+    fn is_writable(&self) -> bool {
+        self.inner.permissions.writable
     }
 
     /// Returns whether this map has 'executable' bit set
     #[getter]
-    fn is_executable(&self) -> PyResult<bool> {
-        Ok(self.inner.permissions.executable)
+    fn is_executable(&self) -> bool {
+        self.inner.permissions.executable
     }
 
     /// Returns whether this map is shared with other processes
     #[getter]
-    fn is_shared(&self) -> PyResult<bool> {
-        Ok(self.inner.permissions.shared)
+    fn is_shared(&self) -> bool {
+        self.inner.permissions.shared
     }
 
     /// Returns whether this map is private (i.e., copy-on-write)
     #[getter]
-    fn is_private(&self) -> PyResult<bool> {
-        Ok(self.inner.permissions.private)
+    fn is_private(&self) -> bool {
+        self.inner.permissions.private
     }
 
     /// Returns the offset of the source that this map begins at.
     #[getter]
-    fn offset(&self) -> PyResult<u64> {
-        Ok(self.inner.offset)
+    fn offset(&self) -> u64 {
+        self.inner.offset
     }
 
     /// Returns the (major, minor) tuple for the associated device.
     #[getter]
-    fn device(&self) -> PyResult<(u64, u64)> {
-        Ok((self.inner.device.major, self.inner.device.minor))
+    fn device(&self) -> (u64, u64) {
+        (self.inner.device.major, self.inner.device.minor)
     }
 
     /// Returns the inode associated with the source and device, or 0 if
     /// no inode is associated.
     #[getter]
-    fn inode(&self) -> PyResult<u64> {
-        Ok(self.inner.inode)
+    fn inode(&self) -> u64 {
+        self.inner.inode
     }
 
     /// Returns the pathname (or pseudo-path) associated with the map,
     /// or None if the map is an anonymous map.
     #[getter]
-    fn pathname(&self) -> PyResult<Option<String>> {
+    fn pathname(&self) -> Option<String> {
         match &self.inner.pathname {
-            rsprocmaps::Pathname::Stack => Ok(Some("[stack]".into())),
-            rsprocmaps::Pathname::Vdso => Ok(Some("[vdso]".into())),
-            rsprocmaps::Pathname::Vvar => Ok(Some("[vvar]".into())),
-            rsprocmaps::Pathname::Vsyscall => Ok(Some("[vsyscall]".into())),
-            rsprocmaps::Pathname::Heap => Ok(Some("[heap]".into())),
-            rsprocmaps::Pathname::OtherPseudo(p) => Ok(Some(p.into())),
-            rsprocmaps::Pathname::Path(p) => Ok(Some(p.into())),
-            rsprocmaps::Pathname::Mmap => Ok(None),
+            rsprocmaps::Pathname::Stack => Some("[stack]".into()),
+            rsprocmaps::Pathname::Vdso => Some("[vdso]".into()),
+            rsprocmaps::Pathname::Vvar => Some("[vvar]".into()),
+            rsprocmaps::Pathname::Vsyscall => Some("[vsyscall]".into()),
+            rsprocmaps::Pathname::Heap => Some("[heap]".into()),
+            rsprocmaps::Pathname::OtherPseudo(p) => Some(p.into()),
+            rsprocmaps::Pathname::Path(p) => Some(p.into()),
+            rsprocmaps::Pathname::Mmap => None,
         }
     }
 }
