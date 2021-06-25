@@ -33,7 +33,7 @@ for map_ in maps:
 
 *procmaps.py* uses [PyO3](https://github.com/PyO3/pyo3) for binding Rust
 to Python. It uses [Maturin](https://github.com/PyO3/maturin) to coerce the
-Rust built into a `pip` and PyPI-compatible wheel.
+Rust build into a `pip` and PyPI-compatible wheel.
 
 Assuming that you have Rust and a relatively recent Python 3 installed,
 the following should just work:
