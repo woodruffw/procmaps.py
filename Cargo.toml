@@ -10,8 +10,8 @@ readme = "README.md"
 license = "MIT"
 
 [package.metadata.release]
-no-dev-version = true
-disable-publish = true # handled by GitHub Actions
+dev-version = false
+publish = false # handled by GitHub Actions
 
 [package.metadata.maturin]
 classifier = [
