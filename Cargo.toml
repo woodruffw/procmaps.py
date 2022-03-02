@@ -19,7 +19,7 @@ classifier = [
   "Programming Language :: Rust",
   "Operating System :: POSIX :: Linux",
 ]
-requires-python = ">=3.6"
+requires-python = ">=3.7"
 
 [lib]
 crate-type = ["cdylib"]
