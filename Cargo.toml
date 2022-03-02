@@ -19,12 +19,12 @@ classifier = [
   "Programming Language :: Rust",
   "Operating System :: POSIX :: Linux",
 ]
-requires-python = ">=3.6"
+requires-python = ">=3.7"
 
 [lib]
 crate-type = ["cdylib"]
 
 [dependencies]
 libc = "0.2"
-pyo3 = { version = "0.15", features = ["extension-module"] }
+pyo3 = { version = "0.16", features = ["extension-module"] }
 rsprocmaps = "0.3"

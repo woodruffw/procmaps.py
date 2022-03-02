@@ -1,11 +1,9 @@
 use std::path::Path;
 
 use libc::pid_t;
-use pyo3::class::PySequenceProtocol;
 use pyo3::exceptions::{PyException, PyIOError};
 use pyo3::prelude::*;
 use pyo3::{create_exception, wrap_pyfunction};
-
 use rsprocmaps::error::Error;
 
 create_exception!(procmaps, ParseError, PyException);
@@ -94,10 +92,7 @@ impl Map {
             rsprocmaps::Pathname::Mmap => None,
         }
     }
-}
 
-#[pyproto]
-impl PySequenceProtocol for Map {
     fn __contains__(&self, addr: u64) -> PyResult<bool> {
         Ok(addr >= self.inner.address_range.begin && addr < self.inner.address_range.end)
     }
