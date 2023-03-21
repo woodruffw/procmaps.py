@@ -1,7 +1,7 @@
 procmaps.py
 ===========
 
-[![Build Status](https://img.shields.io/github/workflow/status/woodruffw/procmaps.py/CI/master)](https://github.com/woodruffw/procmaps.py/actions?query=workflow%3ACI)
+[![CI](https://github.com/woodruffw/procmaps.py/actions/workflows/ci.yml/badge.svg)](https://github.com/woodruffw/procmaps.py/actions/workflows/ci.yml)
 [![Downloads](https://pepy.tech/badge/procmaps)](https://pepy.tech/project/procmaps)
 
 Python bindings for [procmaps.rs](https://github.com/woodruffw/procmaps.rs).
