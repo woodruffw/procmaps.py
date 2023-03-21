@@ -44,7 +44,7 @@ jobs:
     name: upload release to PyPI
     needs:
       - create-release
-      - build-wheels
+      - build-dists
     runs-on: ubuntu-latest
     environment: release
     permissions:
