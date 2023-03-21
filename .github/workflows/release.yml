@@ -32,8 +32,4 @@ jobs:
         run: make dist
 
       - name: publish
-        uses: pypa/gh-action-pypi-publish@v1.5.1
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_TOKEN }}
-          packages_dir: target/wheels/
+        uses: pypa/gh-action-pypi-publish@v1.8.1
