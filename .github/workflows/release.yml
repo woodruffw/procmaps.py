@@ -20,8 +20,31 @@ jobs:
           draft: false
           prerelease: ${{ contains(github.ref, 'pre') || contains(github.ref, 'rc') }}
 
+  build-dists:
+    name: build dists for publishing
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: build dists
+        run: make dist
+
+      - name: upload dists
+        uses: actions/upload-artifact@v3
+        with:
+          name: procmaps-py-dists
+          path: dist/
+
   pypi:
     name: upload release to PyPI
+    needs:
+      - create-release
+      - build-wheels
     runs-on: ubuntu-latest
     environment: release
     permissions:
@@ -33,12 +56,11 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-python@v4
-
-      - name: build wheels
-        run: make dist
+      - name: fetch dists
+        uses: actions/download-artifact@v3
+        with:
+          name: procmaps-py-dists
+          path: dist/
 
       - name: publish
         uses: pypa/gh-action-pypi-publish@v1.8.1
