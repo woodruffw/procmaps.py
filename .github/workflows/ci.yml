@@ -22,10 +22,10 @@ jobs:
     strategy:
       matrix:
         python:
-          - "3.7"
           - "3.8"
           - "3.9"
           - "3.10"
+          - "3.11"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -39,3 +39,17 @@ jobs:
 
     - name: Test
       run: make test
+
+  all-tests-pass:
+    if: always()
+
+    needs:
+    - test
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check test jobs
+        uses: re-actors/alls-green@v1.2.2
+        with:
+          jobs: ${{ toJSON(needs) }}

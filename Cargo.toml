@@ -21,6 +21,6 @@ libc = "0.2"
 pyo3 = { version = "0.19", features = [
   "extension-module",
   "abi3",
-  "abi3-py37",
+  "abi3-py38",
 ] }
 rsprocmaps = "0.3"
