@@ -7,17 +7,15 @@ name: release
 
 jobs:
   create-release:
+    name: create GitHub release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
-      - name: create release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release
+        uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
           prerelease: ${{ contains(github.ref, 'pre') || contains(github.ref, 'rc') }}
 
   build-dists:
