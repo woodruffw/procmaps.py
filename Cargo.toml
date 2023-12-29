@@ -1,6 +1,6 @@
 [package]
 name = "procmaps"
-version = "0.6.4-rc.1"
+version = "0.6.4"
 authors = ["William Woodruff <william@yossarian.net>"]
 edition = "2018"
 description = "Python bindings for procmaps.rs"
