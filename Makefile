@@ -27,4 +27,4 @@ build: env
 .PHONY: dist
 dist: env
 	. env/bin/activate && \
-		docker run --rm -v $(shell pwd):/io ghcr.io/pyo3/maturin build --release --strip --out dist
+		docker run --rm -v $(shell pwd):/io ghcr.io/pyo3/maturin build --release --sdist --strip --out dist
