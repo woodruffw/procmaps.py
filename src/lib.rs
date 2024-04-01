@@ -156,7 +156,7 @@ fn from_str(maps_data: &str) -> PyResult<Vec<Map>> {
 }
 
 #[pymodule]
-fn procmaps(_py: Python, m: &PyModule) -> PyResult<()> {
+fn procmaps(_py: Python, m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<Map>()?;
     m.add_wrapped(wrap_pyfunction!(from_pid))?;
     m.add_wrapped(wrap_pyfunction!(from_path))?;
