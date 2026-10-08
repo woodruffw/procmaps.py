@@ -8,7 +8,7 @@ Python bindings for [procmaps.rs](https://github.com/woodruffw/procmaps.rs).
 
 ## Installation
 
-procmaps.py is available for Python 3.7+ via pip:
+procmaps.py is available for Python 3.10+ via pip:
 
 ```bash
 $ pip install procmaps
