@@ -5,10 +5,21 @@ updates:
     schedule:
       interval: weekly
       time: "10:00"
+    cooldown:
+      default-days: 7
+    groups:
+      all:
+        patterns:
+          - "*"
     open-pull-requests-limit: 10
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
-
+    cooldown:
+      default-days: 7
+    groups:
+      all:
+        patterns:
+          - "*"
